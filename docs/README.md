@@ -4,23 +4,17 @@
 
 - [CREDENTIALS.md](./CREDENTIALS.md) - Informasi login dan credentials
 - [ALUR_PENGGUNAAN.md](./ALUR_PENGGUNAAN.md) - Panduan lengkap alur penggunaan sistem
-- [SETUP_MYSQL.md](../SETUP_MYSQL.md) - Panduan setup database MySQL
-- [README_DATABASE.md](../README_DATABASE.md) - Dokumentasi database
 
 ## Quick Start
 
-### 1. Setup Database
-
-Lihat [SETUP_MYSQL.md](../SETUP_MYSQL.md) untuk panduan lengkap setup MySQL.
-
-### 2. Install Dependencies
+### 1. Install Dependencies
 
 ```bash
 composer install
 npm install
 ```
 
-### 3. Setup Environment
+### 2. Setup Environment
 
 ```bash
 cp .env.example .env
@@ -36,51 +30,74 @@ DB_PORT=3306
 DB_DATABASE=evaluation
 DB_USERNAME=root
 DB_PASSWORD=your_password
+
+APP_NAME=Enrollnow
 ```
 
-### 4. Run Migrations & Seeders
+**Catatan:** Database akan dibuat otomatis saat menjalankan migrasi, jadi tidak perlu membuat database secara manual.
+
+### 3. Run Migrations & Seeders
 
 ```bash
-php artisan migrate:fresh --seed
+php artisan migrate --seed
 ```
 
-### 5. Start Development Server
+Perintah ini akan:
+- Membuat database `evaluation` secara otomatis (jika belum ada)
+- Menjalankan semua migrasi untuk membuat tabel
+- Menjalankan seeder untuk mengisi data awal
 
+### 4. Start Development Server
+
+Terminal 1 (Laravel):
 ```bash
 php artisan serve
+```
+
+Terminal 2 (Vite):
+```bash
 npm run dev
 ```
 
-### 6. Login
+### 5. Login
 
 Buka browser dan akses `http://localhost:8000`
 
 **Default Credentials:**
-- Email: `admin@horizon.ac.id`
-- Password: `password`
+- **Admin:** `admin@horizon.ac.id` / `password`
+- **User:** `ardi.herdiana@horizon.ac.id` / `password`
 
 Lihat [CREDENTIALS.md](./CREDENTIALS.md) untuk informasi lengkap tentang credentials.
 
 ## Fitur Sistem
 
+### Admin Features
+- ✅ Dashboard dengan statistik lengkap dan grafik
 - ✅ Manajemen Mahasiswa (CRUD)
 - ✅ Manajemen Mata Kuliah (CRUD)
 - ✅ Manajemen Periode Akademik (CRUD)
 - ✅ Manajemen Enrollment (CRUD)
 - ✅ Manajemen Nilai (CRUD)
 - ✅ Perhitungan Nilai Otomatis
-- ✅ Dashboard dengan Statistik
 - ✅ Filter dan Pencarian
 - ✅ Pagination
 
+### User Features (Mahasiswa)
+- ✅ Dashboard dengan statistik pribadi
+- ✅ Lihat dan Edit Profil
+- ✅ Pilih Mata Kuliah (Enrollment)
+- ✅ Lihat Enrollment Saya
+- ✅ Lihat Nilai Saya
+- ✅ Distribusi Grade
+
 ## Struktur Database
 
-- `users` - Data user/admin
+- `users` - Data user/admin dengan role-based access
 - `students` - Data mahasiswa
 - `subjects` - Data mata kuliah
-- `periods` - Data periode akademik
+- `periods` - Data periode akademik (P1, P2)
 - `enrollments` - Data pendaftaran mahasiswa ke mata kuliah
-- `grades` - Data nilai mahasiswa
+- `grades` - Data nilai mahasiswa per periode
 
 ## Formula Perhitungan Nilai
 

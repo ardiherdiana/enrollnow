@@ -11,12 +11,12 @@ Setelah menjalankan seeder, sistem akan memiliki beberapa user default yang bisa
 **Role:** Administrator  
 **Deskripsi:** User administrator dengan akses penuh ke semua fitur sistem.
 
-### Test User
+### Regular User (Mahasiswa)
 
-**Email:** `test@example.com`  
+**Email:** `ardi.herdiana@horizon.ac.id`  
 **Password:** `password`  
 **Role:** User  
-**Deskripsi:** User biasa untuk testing aplikasi.
+**Deskripsi:** User biasa (mahasiswa) dengan akses terbatas untuk melihat dan mengelola data pribadi.
 
 ## Cara Login
 
